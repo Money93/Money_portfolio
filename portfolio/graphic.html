@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>平面設計與其他 | 徐曼玲 Man-Ling XU</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Hanken+Grotesk:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="custom-cursor" id="cursor"></div>
+
+    <header class="site-header">
+        <nav class="nav-container">
+            <a class="nav-logo" href="../index.html">Man-Ling.</a>
+            <div class="nav-links">
+                <a class="nav-link" href="../index.html">關於我</a>
+                <a class="nav-link" href="./experience.html">經歷實踐</a>
+                <a class="nav-link" href="./uiux.html">UI/UX 設計</a>
+                <a class="nav-link" href="./interactive.html">互動多媒體</a>
+                <a class="nav-link active" href="./graphic.html">平面與其他</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="abstract-theme" id="main-canvas">
+        <canvas id="fluid-bg"></canvas>
+
+        <div class="floating-sphere sphere-1"></div>
+        <div class="floating-sphere sphere-2"></div>
+
+        <section class="portfolio-section" style="padding-top: 5rem;">
+            <div class="section-header">
+                <div>
+                    <span class="section-num">04. VISUAL & GRAPHIC</span>
+                    <h2 class="section-title">平面視覺與實務周邊</h2>
+                    <p class="section-subtitle">社會議題、拼貼美學與社團美宣海報設計</p>
+                </div>
+                <div class="badge-container">
+                    <span class="logo">
+                        <img src="../images/logo/Adobe_Illustrator_CC_icon.svg.png" alt="Illustrator" title="Illustrator" style="height: 24px; width: auto; vertical-align: middle;">
+                    </span>
+                    <span class="logo">
+                        <img src="../images/logo/Adobe_Photoshop_CC_icon.svg.png" alt="Photoshop" title="Photoshop" style="height: 24px; width: auto; vertical-align: middle;">
+                    </span>
+                    <span class="logo">
+                        <img src="../images/logo/canva_logo.svg" alt="Canva" title="Canva" style="height: 24px; width: auto; vertical-align: middle;">
+                    </span>
+                </div>
+            </div>
+            
+            <div class="bento-grid">
+                <div class="bento-card col-span-4 glass-pane reveal-on-scroll" onclick="openLightbox('no-套-no-good')">
+                    <div class="card-img-wrapper multi-img">
+                        <img src="../images/No套No Good.jpg" alt="《NO 套 NO GOOD》海報設計" class="portfolio-img">
+                        <img src="../images/要愛要套.jpg" alt="《要愛要套》海報設計" class="portfolio-img">
+                    </div>
+                    <div class="card-text-content">
+                        <span class="card-tag">性健康議題宣導</span>
+                        <h4 class="work-title">《NO 套 NO GOOD》&《要愛要套》</h4>
+                        <p class="work-desc">點擊查看詳情：透過大象與烏龜的幽默設計，強調安全做愛與彼此尊重的戀愛起點。</p>
+                    </div>
+                </div>
+
+                <div class="bento-card col-span-4 glass-pane reveal-on-scroll" onclick="openLightbox('romanticism')">
+                    <div class="card-img-wrapper">
+                        <img src="../images/浪漫消費主義.jpg" alt="《浪漫消費主義》拼貼海報" class="portfolio-img">
+                    </div>
+                    <div class="card-text-content">
+                        <span class="card-tag">實體雜誌拼貼剪輯</span>
+                        <h4 class="work-title">《浪漫消費主義》</h4>
+                        <p class="work-desc">點擊查看詳情：運用實體雜誌剪貼，反思浪漫如何被商業重新標價與商品化的痛點。</p>
+                    </div>
+                </div>
+
+                <div class="bento-card col-span-4 glass-pane reveal-on-scroll" onclick="openLightbox('health-mascot')">
+                    <div class="card-img-wrapper">
+                        <img src="../images/poster-health.jpg" alt="衛保吉祥物與文宣周邊" class="portfolio-img">
+                    </div>
+                    <div class="card-text-content">
+                        <span class="card-tag">組織美宣實踐周邊</span>
+                        <h4 class="work-title">衛保吉祥物與文宣周邊</h4>
+                        <p class="work-desc">點擊查看詳情：全新一代吉祥物 IP 符號設計，延伸推出環保帆布提袋與團隊美學培力。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="portfolioLightbox" class="lightbox-overlay" onclick="closeLightbox(event)">
+        <div class="lightbox-content glass-pane" onclick="event.stopPropagation()">
+            <button class="lightbox-close" onclick="closeLightbox(event)">&times;</button>
+            <div class="lightbox-body">
+                <div class="lightbox-media" id="lightboxMedia"></div>
+                <div class="lightbox-info">
+                    <span class="card-tag" id="lightboxTag">專案類別</span>
+                    <h3 class="section-title" id="lightboxTitle" style="margin: 0.5rem 0 1.5rem 0; font-size: 24px;">作品標題</h3>
+                    <div class="lightbox-detailed-desc" id="lightboxDesc">
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+</html>

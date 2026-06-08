@@ -1,0 +1,763 @@
+/* ==========================================================================
+   1. 全域變數定義 (:root) - 修改這裡即可改變全站視覺
+   ========================================================================== */
+:root {
+    /* 品牌色系 Palette */
+    --color-primary: #6b5a60;               /* 經典藕紫深灰 */
+    --color-primary-container: #fce4ec;     /* 浪漫粉櫻色 */
+    --color-primary-fixed-dim: #d7c1c8;
+    --color-secondary: #636037;
+    --color-secondary-container: #e7e1ae;   /* 柔和鵝黃色 */
+    --color-secondary-fixed: #eae4b1;
+    --color-tertiary-container: #f4e6f6;    /* 粉紫藤色 */
+    --color-surface: #fff8f8;               /* 極柔暖白底色 */
+    --color-on-surface: #211a1c;            /* 內文深色 */
+    --color-on-surface-variant: #4d4447;    /* 次要文字灰 */
+    --color-background: #fff8f8;
+    
+    /* 圓角 Radius */
+    --radius-default: 0.25rem;
+    --radius-lg: 0.5rem;
+    --radius-xl: 0.75rem;
+    --radius-card: 2.5rem;
+    --radius-full: 9999px;
+
+    /* 斷點與間距 Spacing (使用 clamp 讓數值隨螢幕自動縮放) */
+    --padding-desktop: clamp(24px, 5vw, 80px);
+    --gutter: 32px;
+    --container-max-width: 1440px;
+
+    /* 字型 Font Family */
+    --font-headline: 'Playfair Display', serif;
+    --font-body: 'Hanken Grotesk', sans-serif;
+
+    /* 響應式字級大小 Font Size (使用 clamp(最小, 首選流體值, 最大) 達成完美 RWD) */
+    --fs-display: clamp(40px, 6vw, 72px);
+    --fs-headline-lg: clamp(28px, 4vw, 40px);
+    --fs-headline-sm: clamp(20px, 2.5vw, 24px);
+    --fs-body-lg: clamp(16px, 1.5vw, 18px);
+    --fs-body-md: 16px;
+    --fs-label-caps: 12px;
+}
+
+/* ==========================================================================
+   2. 基礎重設 (Reset & Base Styles)
+   ========================================================================== */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--color-surface);
+    color: var(--color-on-surface);
+    font-family: var(--font-body);
+    font-size: var(--fs-body-md);
+    line-height: 1.6;
+    overflow-x: hidden;
+    /* 在滑鼠點擊時更滑順 */
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* 讓桌機版隱藏原生滑鼠，改用我們自訂的優雅游標 */
+@media (min-width: 768px) {
+    body {
+        cursor: none;
+    }
+}
+
+/* 反白色彩 */
+::selection {
+    background-color: var(--color-primary-container);
+    color: var(--color-primary);
+}
+
+/* ==========================================================================
+   3. 通用元件與按鈕 (Components & Buttons)
+   ========================================================================== */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-full);
+    border: none;
+    font-family: var(--font-body);
+    font-size: var(--fs-label-caps);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    text-decoration: none;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: #ffffff;
+    box-shadow: 0 10px 20px rgba(107, 90, 96, 0.15);
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 25px rgba(107, 90, 96, 0.25);
+}
+
+.btn-white {
+    background-color: #ffffff;
+    color: var(--color-primary);
+}
+
+.btn-dark {
+    background-color: var(--color-on-surface);
+    color: #ffffff;
+}
+
+.btn-dark:hover {
+    transform: scale(1.1);
+    box-shadow: 0 20px 40px rgba(33, 26, 28, 0.2);
+}
+
+.btn-with-icon {
+    padding: 1rem 2rem;
+    gap: 12px;
+}
+
+.arrow-icon {
+    transition: transform 0.3s ease;
+}
+
+.btn-with-icon:hover .arrow-icon {
+    transform: translateX(6px);
+}
+
+/* 玻璃擬態樣式 */
+.glass-pane {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.cover-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s ease;
+}
+
+.italic-text {
+    font-style: italic;
+    color: var(--color-primary);
+}
+
+/* ==========================================================================
+   4. 自訂滑鼠游標 (Custom Cursor)
+   ========================================================================== */
+.custom-cursor {
+    display: none;
+    width: 32px;               /* 游標寬度，可依圖片大小微調 */
+    height: 32px;              /* 游標高度，可依圖片大小微調 */
+    position: fixed;
+    pointer-events: none;      /* 確保滑鼠穿透，不影響網頁點擊 */
+    z-index: 9999;
+    
+    /* 載入你的太極圖片 */
+    background-image: url('./3DBubbles.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    
+    /* 移除 mix-blend-mode 才能完整保留圖片原本的色彩與形狀 */
+    mix-blend-mode: normal; 
+    
+    /* 滑鼠移動時的平滑感 */
+    transition: transform 0.1s ease-out;
+    /* 讓圖片中心點對準滑鼠真正的游標尖端 */
+    transform: translate(-50%, -50%);
+}
+@media (min-width: 900px) {
+    .custom-cursor {
+        display: block;
+    }
+}
+
+/* 按下滑鼠時的特效：你可以自由決定要縮放還是旋轉，這裡設定成微微放大 1.2 倍 */
+.custom-cursor.click-effect {
+    transform: translate(-50%, -50%) scale(1.2);
+}
+/* ==========================================================================
+   5. 頂部導覽列 (Header & Navigation)
+   ========================================================================== */
+.site-header {
+    stroke: top;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-block: 1px solid rgba(255, 255, 255, 0.2);
+    z-index: 100;
+    box-shadow: 0 20px 40px rgba(107, 90, 96, 0.05);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem var(--padding-desktop);
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+}
+
+.nav-logo {
+    font-family: var(--font-headline);
+    font-size: var(--fs-headline-sm);
+    font-weight: 600;
+    color: var(--color-primary);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+}
+
+.nav-links {
+    display: none; /* 手機版先隱藏，提升精簡度 */
+    gap: 32px;
+}
+
+@media (min-width: 768px) {
+    .nav-links {
+        display: flex;
+    }
+}
+
+.nav-link {
+    font-family: var(--font-body);
+    font-size: var(--fs-label-caps);
+    font-weight: 700;
+    color: var(--color-on-surface-variant);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.3s, border-color 0.3s;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--color-primary);
+}
+
+.nav-link.active {
+    border-color: var(--color-primary);
+}
+
+/* ==========================================================================
+   6. 主要液態畫布與首頁區 (Main & Hero Section)
+   ========================================================================== */
+.melting-gradient {
+    background: linear-gradient(135deg, var(--color-primary-container) 0%, var(--color-tertiary-container) 50%, #fff0f4 100%);
+    transition: background 0.8s ease;
+    min-height: 100vh;
+}
+
+.hero-section {
+    position: relative;
+    min-height: calc(100vh - 70px);
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    padding: var(--padding-desktop);
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    overflow: hidden;
+    gap: 40px;
+}
+
+@media (min-width: 1024px) {
+    .hero-section {
+        grid-template-columns: 1.2fr 0.8fr;
+    }
+}
+
+/* 背景夢幻發光球體 */
+.glow-orb {
+    position: absolute;
+    border-radius: var(--radius-full);
+    filter: blur(100px);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.orb-1 {
+    top: -10%;
+    right: -10%;
+    width: clamp(300px, 40vw, 600px);
+    height: clamp(300px, 40vw, 600px);
+    background: rgba(231, 225, 174, 0.3);
+    animation: pulse 8s infinite alternate;
+}
+
+.orb-2 {
+    bottom: -10%;
+    left: -10%;
+    width: clamp(250px, 35vw, 500px);
+    height: clamp(250px, 35vw, 500px);
+    background: rgba(252, 228, 236, 0.4);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    max-width: 650px;
+}
+
+.hero-tagline {
+    display: block;
+    font-size: var(--fs-label-caps);
+    font-weight: 700;
+    color: var(--color-primary);
+    letter-spacing: 0.3em;
+    margin-bottom: 1.5rem;
+}
+
+.hero-title {
+    font-family: var(--font-headline);
+    font-size: var(--fs-display);
+    font-weight: 700;
+    color: var(--color-on-background);
+    line-height: 1.1;
+    margin-bottom: 2rem;
+}
+
+.hero-description {
+    font-size: var(--fs-body-lg);
+    color: var(--color-on-surface-variant);
+    margin-bottom: 2.5rem;
+}
+
+/* 右側視覺圖卡 */
+.hero-visual {
+    display: none; /* 手機版隱藏，保持極簡 */
+    justify-content: center;
+    position: relative;
+    z-index: 10;
+}
+
+@media (min-width: 1024px) {
+    .hero-visual {
+        display: flex;
+    }
+}
+
+.hero-image-container {
+    width: 85%;
+    aspect-ratio: 3 / 4;
+    border-radius: 4rem;
+    overflow: hidden;
+    transform: rotate(3deg);
+    box-shadow: 0 40px 60px rgba(107, 90, 96, 0.15);
+    transition: transform 0.5s ease;
+}
+
+.hero-image-container:hover {
+    transform: rotate(0deg) scale(1.02);
+}
+
+.vapor-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(255,248,248,0) 0%, rgba(255,248,248,0.3) 100%);
+    pointer-events: none;
+}
+
+/* ==========================================================================
+   7. 作品集 Bento Grid 區區 (Portfolio Section)
+   ========================================================================== */
+.portfolio-section {
+    padding: 6rem var(--padding-desktop);
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+}
+
+.section-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    margin-bottom: 4rem;
+}
+
+@media (min-width: 768px) {
+    .section-header {
+        flex-direction: row;
+        align-items: flex-end;
+    }
+}
+
+.section-title {
+    font-family: var(--font-headline);
+    font-size: var(--fs-headline-lg);
+    color: var(--color-on-surface);
+    margin-bottom: 1rem;
+}
+
+.section-subtitle {
+    color: var(--color-on-surface-variant);
+}
+
+.badge-container {
+    display: flex;
+    gap: 8px;
+}
+
+.badge {
+    padding: 6px 16px;
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: var(--radius-full);
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--color-primary);
+    letter-spacing: 0.05em;
+}
+
+/* Bento Grid RWD 核心 */
+.bento-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* 手機版強制單欄，好讀大方 */
+    gap: var(--gutter);
+}
+
+@media (min-width: 768px) {
+    .bento-grid {
+        grid-template-columns: repeat(12, 1fr); /* 桌機版還原 12 欄巨觀佈局 */
+    }
+}
+
+.bento-card {
+    position: relative;
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    height: 400px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.bento-card:hover {
+    box-shadow: 0 30px 50px rgba(107, 90, 96, 0.15);
+}
+
+.bento-card:hover .cover-img {
+    transform: scale(1.08);
+}
+
+/* 跨欄設定定義 */
+@media (min-width: 768px) {
+    .col-span-8 { grid-column: span 8; height: 500px; }
+    .col-span-4 { grid-column: span 4; height: 500px; }
+    .col-span-5 { grid-column: span 5; height: 400px; }
+    .col-span-7 { grid-column: span 7; height: 400px; }
+}
+
+/* 卡片內嵌遮罩層與文字 */
+.card-overlay {
+    position: absolute;
+    inset: 0;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    z-index: 2;
+}
+
+.gradient-bottom {
+    background: linear-gradient(to top, rgba(107, 90, 96, 0.7) 0%, rgba(0,0,0,0) 70%);
+}
+
+.glass-blur {
+    background: rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: opacity 0.4s ease;
+    justify-content: center;
+    align-items: center;
+}
+
+.group-hover-btn:hover .glass-blur {
+    opacity: 1;
+}
+
+.card-tag {
+    font-size: var(--fs-label-caps);
+    color: var(--color-secondary-fixed);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.card-title-lg {
+    font-family: var(--font-headline);
+    font-size: var(--fs-headline-sm);
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+}
+
+.card-desc {
+    color: rgba(255,255,255,0.8);
+    font-size: var(--fs-body-md);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.4s ease 0.1s;
+}
+
+.bento-card:hover .card-desc {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card-caption-floating {
+    position: absolute;
+    bottom: 32px;
+    left: 32px;
+    z-index: 2;
+}
+
+.floating-title {
+    font-family: var(--font-headline);
+    font-size: var(--fs-headline-sm);
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    padding: 0.5rem 1.5rem;
+    border-radius: var(--radius-xl);
+}
+
+.flex-column-center {
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    gap: 16px;
+    background: rgba(107, 90, 96, 0.2);
+}
+
+.icon-lg {
+    font-size: 64px !important;
+}
+
+.card-title-display {
+    font-family: var(--font-headline);
+    font-size: var(--fs-headline-lg);
+}
+
+/* ==========================================================================
+   8. 核心理念區 (Philosophy Section)
+   ========================================================================== */
+.philosophy-section {
+    padding: 8rem var(--padding-desktop);
+}
+
+.philosophy-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.icon-display {
+    font-size: 48px !important;
+    color: var(--color-primary);
+    margin-bottom: 2rem;
+    font-variation-settings: 'FILL' 1;
+}
+
+.section-title-center {
+    font-family: var(--font-headline);
+    font-size: var(--fs-display);
+    margin-bottom: 4rem;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    text-align: left;
+}
+
+@media (min-width: 768px) {
+    .features-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.feature-box {
+    padding: 2.5rem;
+    border-radius: var(--radius-card);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.feature-box:hover {
+    transform: translateY(-10px);
+}
+
+.feature-title {
+    font-family: var(--font-headline);
+    font-size: var(--fs-headline-sm);
+    color: var(--color-primary);
+    margin-bottom: 1.5rem;
+}
+
+.feature-desc {
+    color: var(--color-on-surface-variant);
+}
+
+/* ==========================================================================
+   9. 行動呼籲區與頁尾 (CTA & Footer Section)
+   ========================================================================== */
+.cta-section {
+    padding: 4rem var(--padding-desktop) 8rem;
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+}
+
+.cta-container {
+    position: relative;
+    border-radius: 4rem;
+    padding: clamp(3rem, 8vw, 6rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+.cta-bg-glow {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(252,228,236,0.3) 0%, rgba(244,230,246,0.3) 100%);
+    opacity: 0;
+    transition: opacity 1s ease;
+    z-index: 1;
+}
+
+.cta-container:hover .cta-bg-glow {
+    opacity: 1;
+}
+
+.cta-title {
+    font-family: var(--font-headline);
+    font-size: var(--fs-display);
+    line-height: 1.1;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 5;
+}
+
+.cta-desc {
+    font-size: var(--fs-body-lg);
+    color: var(--color-on-surface-variant);
+    max-width: 600px;
+    margin-bottom: 3rem;
+    position: relative;
+    z-index: 5;
+}
+
+.cta-btn {
+    position: relative;
+    z-index: 5;
+}
+
+/* 頁尾 */
+.site-footer {
+    padding: 3rem var(--padding-desktop);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 32px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+@media (min-width: 768px) {
+    .site-footer {
+        flex-direction: row;
+    }
+}
+
+.footer-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .footer-info {
+        align-items: flex-start;
+    }
+}
+
+.footer-logo {
+    font-family: var(--font-headline);
+    font-size: var(--fs-headline-sm);
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+}
+
+.footer-copyright {
+    color: var(--color-on-surface-variant);
+    font-size: 14px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 32px;
+}
+
+.footer-link {
+    color: var(--color-on-surface-variant);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-link:hover {
+    color: var(--color-primary);
+}
+
+/* ==========================================================================
+   10. 精緻動態效果 (CSS Animations & Reveal)
+   ========================================================================== */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(1.05); opacity: 1; }
+}
+
+/* 載入時的一氣呵成動畫 */
+.animate-fade-in {
+    opacity: 0;
+    animation: fadeIn 1s cubic-bezier(0.215, 0.610, 0.355, 1.000) forwards;
+}
+
+.delay-1 { animation-delay: 0.2s; }
+.delay-2 { animation-delay: 0.4s; }
+.delay-3 { animation-delay: 0.6s; }
+.delay-4 { animation-delay: 0.8s; }
+
+/* 滾動偵測 reveal 初始狀態 */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s cubic-bezier(0.215, 0.610, 0.355, 1.000), 
+                transform 1s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+}
+
+/* 當 JS 偵測到進入視窗時賦予此 class */
+.reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}

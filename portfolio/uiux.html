@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>UI/UX 介面設計 | 徐曼玲 Man-Ling XU</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Hanken+Grotesk:wght@400;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        /* 專屬 uiux 頁面的圖表卡片微調 */
+        .chart-wrapper {
+            width: 100%;
+            height: 100%;
+            min-height: 220px;
+            overflow: hidden;
+            border-radius: 1.5rem;
+            background: rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            margin-top: 1.5rem;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+        .chart-wrapper:hover {
+            transform: scale(1.02);
+            border-color: var(--color-primary);
+        }
+        .chart-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+        }
+        .subsection-title {
+            font-family: var(--font-headline);
+            font-size: 20px;
+            color: var(--color-primary);
+            margin: 2.5rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px dashed rgba(162, 85, 255, 0.2);
+            grid-column: span 12;
+        }
+    </style>
+</head>
+<body>
+    <div class="custom-cursor" id="cursor"></div>
+
+    <header class="site-header">
+        <nav class="nav-container">
+            <a class="nav-logo" href="../index.html">Man-Ling.</a>
+            <div class="nav-links">
+                <a class="nav-link" href="../index.html">關於我</a>
+                <a class="nav-link" href="./experience.html">經歷實踐</a>
+                <a class="nav-link active" href="./uiux.html">UI/UX 設計</a>
+                <a class="nav-link" href="./interactive.html">互動多媒體</a>
+                <a class="nav-link" href="./graphic.html">平面與其他</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="abstract-theme" id="main-canvas">
+        <canvas id="fluid-bg"></canvas>
+        
+        <div class="floating-sphere sphere-1"></div>
+        <div class="floating-sphere sphere-2"></div>
+
+        <section class="portfolio-section" style="padding-top: 5rem;">
+            <div class="section-header">
+                <div>
+                    <span class="section-num">02. UI/UX DESIGN</span>
+                    <h2 class="section-title">PET CARE APP</h2>
+                    <p class="section-subtitle">2050 未來寵物雙向照護體驗（第23屆育秀盃創意獎 工業設計組複賽入圍）</p>
+                </div>
+                <div class="badge-container">
+                    <span class="badge">Figma</span>
+                    <span class="badge">使用者研究</span>
+                    <span class="badge">資訊架構</span>
+                    <span class="badge">服務藍圖</span>
+                </div>
+            </div>
+
+            <div class="bento-grid">
+                
+                <div class="bento-card col-span-7 glass-pane reveal-on-scroll">
+                    <div class="card-text-content">
+                        <h3 class="card-inner-title">專案核心：共生與預測</h3>
+                        <p class="card-inner-desc">以即時監測、情緒理解、未來預測為核心，將毛孩日常轉化為可視化健康指標。透過多維度的 AI 數據訓練與即時模型優化，建構一個串聯「飼主端」與「獸醫端」的雙向醫療照護生態系。</p>
+                    </div>
+                </div>
+
+                <div class="bento-card col-span-5 glass-pane reveal-on-scroll">
+                    <div class="card-text-content">
+                        <h3 class="card-inner-title">設計挑戰與機會</h3>
+                        <p class="card-inner-desc" style="font-size: 14px;">
+                            <strong>痛點：</strong> 飼主難以精準判斷寵物異常的嚴重性，就診時常因描述不精準或資料不足導致延誤診斷。<br>
+                            <strong>機會：</strong> 導入即時共生儀表板、急重症燈號提示，並建立數位獸醫與相似病例推薦系統，縮短診斷時間。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="subsection-title">01. 使用者研究與同理剖析 (Research & Empathy)</div>
+
+                <div class="bento-card col-span-6 glass-pane reveal-on-scroll" style="height: auto;">
+                    <div class="card-text-content" style="padding-bottom: 1rem;">
+                        <span class="card-tag">角色 A：目標飼主 (Persona)</span>
+                        <h4 class="work-title">KIRE (28歲 / 創作歌手)</h4>
+                        <p class="work-desc">工作繁忙，無法隨時照看貓咪，渴望透過科技精準掌握貓咪心理與身體健康，嘗試「更聰明的養貓方式」以減少焦慮感。</p>
+                        <div class="chart-wrapper" onclick="openUiuxLightbox('persona-owner')">
+                            <img src="../images/PET CARE APP/10.jpg" alt="Persona 飼主" class="chart-img">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bento-card col-span-6 glass-pane reveal-on-scroll" style="height: auto;">
+                    <div class="card-text-content" style="padding-bottom: 1rem;">
+                        <span class="card-tag">思維脈絡：同理心地圖</span>
+                        <h4 class="work-title">飼主的情感與痛點探索</h4>
+                        <p class="work-desc">深入挖掘飼主在「聽、看、想、做」之中的核心體驗。渴望獲得 AI 小夥伴的視覺化數據回饋，同時擔憂 AI 數據是否能比實體醫生更具專業度。</p>
+                        <div class="chart-wrapper" onclick="openUiuxLightbox('empathy-owner')">
+                            <img src="../images/PET CARE APP/11.jpg" alt="同理心地圖 飼主" class="chart-img">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bento-card col-span-6 glass-pane reveal-on-scroll" style="height: auto;">
+                    <div class="card-text-content" style="padding-bottom: 1rem;">
+                        <span class="card-tag">角色 B：醫療專業 (Persona)</span>
+                        <h4 class="work-title">蔡衣詩 (52歲 / 獸醫師)</h4>
+                        <p class="work-desc">習慣以數據與觀察輔助診斷。期望透過 App 獲取寵物完整身心資料、縮短重複性問診時間，並提升實體看診的診斷精確度。</p>
+                        <div class="chart-wrapper" onclick="openUiuxLightbox('persona-vet')">
+                            <img src="../images/PET CARE APP/12.jpg" alt="Persona 獸醫" class="chart-img">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bento-card col-span-6 glass-pane reveal-on-scroll" style="height: auto;">
+                    <div class="card-text-content" style="padding-bottom: 1rem;">
+                        <span class="card-tag">思維脈絡：同理心地圖</span>
+                        <h4 class="work-title">獸醫的診療痛點與獲得</h4>
+                        <p class="work-desc">探討獸醫在臨床上面臨「飼主描述病況不精準」的痛苦，以及希望看診前能瀏覽 App 數據或相似案例、藉由看到寵物好轉獲得成就感的心路歷程。</p>
+                        <div class="chart-wrapper" onclick="openUiuxLightbox('empathy-vet')">
+                            <img src="../images/PET CARE APP/13.jpg" alt="同理心地圖 獸醫" class="chart-img">
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="subsection-title">02. 體驗脈絡與情感曲線 (User Journey Map)</div>
+
+                <div class="bento-card col-span-12 glass-pane reveal-on-scroll" style="height: auto;">
+                    <div class="card-text-content" style="padding-bottom: 1.5rem;">
+                        <span class="card-tag">飼主旅程</span>
+                        <h4 class="work-title">使用者旅程地圖 (User Journey Map) - 發現寵物不適到尋求驗證</h4>
+                        <p class="work-desc">梳理飼主從「收到通知 ➔ 發現異常 ➔ 閱讀文章 ➔ 諮詢數位獸醫 ➔ 尋求處方」的動態情感曲線。點擊圖片可放大查看各階段接觸點、痛點與轉化為系統設計的設計機會。</p>
+                        <div class="chart-wrapper" style="min-height: 280px;" onclick="openUiuxLightbox('ujm-owner')">
+                            <img src="../images/PET CARE APP/16.jpg" alt="使用者旅程地圖 飼主" class="chart-img">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bento-card col-span-12 glass-pane reveal-on-scroll" style="height: auto;">
+                    <div class="card-text-content" style="padding-bottom: 1.5rem;">
+                        <span class="card-tag">獸醫旅程</span>
+                        <h4 class="work-title">使用者旅程地圖 (User Journey Map) - 透過社群掌握更多醫療資訊</h4>
+                        <p class="work-desc">剖析專業獸醫「進入社群 ➔ 閱讀留言 ➔ 發表專業回覆 ➔ 收藏案例 ➔ 看診時參考」的行為脈絡，將資訊模糊的痛點轉化為「AI 自動整理與系統自動標籤協助快速閱讀」的優化契機。</p>
+                        <div class="chart-wrapper" style="min-height: 280px;" onclick="openUiuxLightbox('ujm-vet')">
+                            <img src="../images/PET CARE APP/17.jpg" alt="使用者旅程地圖 獸醫" class="chart-img">
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="subsection-title">03. 系統服務藍圖與技術對接 (Service Blueprint)</div>
+
+                <div class="bento-card col-span-12 glass-pane reveal-on-scroll" style="height: auto;">
+                    <div class="card-text-content" style="padding-bottom: 1.5rem;">
+                        <span class="card-tag">雙向服務生態系（前端與後端的技術橋樑）</span>
+                        <h4 class="work-title">服務藍圖 (Service Blueprint) - 飼主端與獸醫端的服務前後台對接</h4>
+                        <p class="work-desc">將前端的使用者行為、接觸點，與後端資料庫及支援系統（基因與長壽預測模型維護、虛擬醫療資源演算法、AI 案例比對模型）緊密串聯，體現流暢、透明且具可追蹤性的數位醫療服務生態。</p>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 1.5rem;">
+                            <div class="chart-wrapper" style="min-height: 240px;" onclick="openUiuxLightbox('blueprint-owner')">
+                                <img src="../images/PET CARE APP/14.jpg" alt="服務藍圖 飼主" class="chart-img">
+                            </div>
+                            <div class="chart-wrapper" style="min-height: 240px;" onclick="openUiuxLightbox('blueprint-vet')">
+                                <img src="../images/PET CARE APP/15.jpg" alt="服務藍圖 獸醫" class="chart-img">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="subsection-title">04. 資訊架構與功能藍圖 (Information Architecture)</div>
+
+                <div class="bento-card col-span-6 glass-pane reveal-on-scroll" style="height: auto;">
+                    <div class="card-text-content" style="padding-bottom: 1rem;">
+                        <span class="card-tag">核心骨架：系統節點</span>
+                        <h4 class="work-title">資訊架構圖 (IA) - 飼主端 App</h4>
+                        <p class="work-desc">以生理/心理監測（情緒偵測、異常預警圖）、虛擬診斷與長壽分析為骨幹，延伸出與寵物和人聊天的功能，並與智能家電控制進行串接。</p>
+                        <div class="chart-wrapper" onclick="openUiuxLightbox('ia-owner')">
+                            <img src="../images/PET CARE APP/18.jpg" alt="資訊架構圖 飼主" class="chart-img">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bento-card col-span-6 glass-pane reveal-on-scroll" style="height: auto;">
+                    <div class="card-text-content" style="padding-bottom: 1rem;">
+                        <span class="card-tag">社群功能與內容管理</span>
+                        <h4 class="work-title">資訊架構圖 (IA) - 獸醫/社群端</h4>
+                        <p class="work-desc">規劃明確的社群功能階層，包含我的貼文與收藏、熱搜榜單分類、追蹤狀態、以及 AI 智能問答模組，精準分流不同角色的資訊獲取需求。</p>
+                        <div class="chart-wrapper" onclick="openUiuxLightbox('ia-vet')">
+                            <img src="../images/PET CARE APP/19.jpg" alt="資訊架構圖 獸醫" class="chart-img">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <div id="uiuxLightbox" class="lightbox-overlay" onclick="closeUiuxLightbox(event)">
+        <div class="lightbox-content glass-pane" onclick="event.stopPropagation()" style="max-width: 1100px; padding: 2rem;">
+            <button class="lightbox-close" onclick="closeUiuxLightbox(event)">&times;</button>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 1.5rem;">
+                <img id="uiuxLightboxImg" src="" alt="放大圖表" style="width: 100%; max-height: 75vh; object-fit: contain; border-radius: 1rem; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
+                <h3 id="uiuxLightboxTitle" class="work-title" style="margin: 0; font-size: 22px;">圖表名稱</h3>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 建立 UI/UX 燈箱專用的資料對照表
+        const uiuxData = {
+            'persona-owner': { title: 'Persona - 目標飼主 KIRE 剖析', src: '../images/PET CARE APP/10.jpg' },
+            'empathy-owner': { title: '同理心地圖 - 飼主的核心思維與痛點', src: '../images/PET CARE APP/11.jpg' },
+            'persona-vet': { title: 'Persona - 專業獸醫師 蔡衣詩 剖析', src: '../images/PET CARE APP/12.jpg' },
+            'empathy-vet': { title: '同理心地圖 - 獸醫師的診療心路歷程', src: '../images/PET CARE APP/13.jpg' },
+            'blueprint-owner': { title: '服務藍圖 (Service Blueprint) - 飼主端操作與後端智能對接', src: '../images/PET CARE APP/14.jpg' },
+            'blueprint-vet': { title: '服務藍圖 (Service Blueprint) - 獸醫與社群資訊整合流', src: '../images/PET CARE APP/15.jpg' },
+            'ujm-owner': { title: '使用者旅程地圖 (User Journey Map) - 飼主不適警示與尋求解答體驗曲線', src: '../images/PET CARE APP/16.jpg' },
+            'vet-ujm': { title: '使用者旅程地圖 (User Journey Map) - 獸醫透過社群掌握醫療資訊體驗曲線', src: '../images/PET CARE APP/17.jpg' },
+            'ia-owner': { title: '資訊架構圖 (IA) - 飼主端 App 功能架構節點', src: '../images/PET CARE APP/18.jpg' },
+            'ia-vet': { title: '資訊架構圖 (IA) - 獸醫端與社群平台功能節點', src: '../images/PET CARE APP/19.jpg' }
+        };
+
+        function openUiuxLightbox(id) {
+            const data = uiuxData[id];
+            const lightbox = document.getElementById('uiuxLightbox');
+            if (!data || !lightbox) return;
+
+            document.getElementById('uiuxLightboxImg').src = data.src;
+            document.getElementById('uiuxLightboxTitle').innerText = data.title;
+            
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden'; // 防止底層網頁穿透滾動
+        }
+
+        function closeUiuxLightbox(event) {
+            const lightbox = document.getElementById('uiuxLightbox');
+            if (lightbox) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        // 支援 ESC 鍵關閉
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeUiuxLightbox();
+        });
+    </script>
+    <script src="./script.js"></script>
+</body>
+</html>

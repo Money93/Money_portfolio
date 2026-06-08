@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>互動多媒體設計 | 徐曼玲 Man-Ling XU</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Hanken+Grotesk:wght@400;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="custom-cursor" id="cursor"></div>
+    
+    <header class="site-header">
+        <nav class="nav-container">
+            <a class="nav-logo" href="../index.html">Man-Ling.</a>
+            <div class="nav-links">
+                <a class="nav-link" href="../index.html">關於我</a>
+                <a class="nav-link" href="./experience.html">經歷實踐</a>
+                <a class="nav-link" href="./uiux.html">UI/UX 設計</a>
+                <a class="nav-link active" href="./interactive.html">互動多媒體</a>
+                <a class="nav-link" href="./graphic.html">平面與其他</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="abstract-theme" id="main-canvas">
+        <canvas id="fluid-bg"></canvas>
+        
+        <div class="floating-sphere sphere-1"></div>
+        <div class="floating-sphere sphere-2"></div>
+
+        <section class="portfolio-section" style="padding-top: 5rem;">
+            <div class="section-header">
+                <div>
+                    <span class="section-num">03. INTERACTIVE INSTALLATION</span>
+                    <h2 class="section-title">聲色共鳴</h2>
+                    <p class="section-subtitle">團隊 5 人音畫互動投影創作（負責：專案管理）</p>
+                </div>
+                <div class="badge-container">
+                    <span class="badge">TouchDesigner</span>
+                    <span class="badge">互動新媒體</span>
+                </div>
+            </div>
+            <!-- 互動作品影音展示區 -->
+            <div class="bento-grid">
+                <div class="bento-card col-span-12 glass-pane reveal-on-scroll" style="height: auto; min-height: 500px;">
+                    
+                    <!-- YouTube 響應式影片外殼 -->
+                    <div class="youtube-responsive-container" style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0; background-color: #000; border-radius: var(--radius-card) var(--radius-card) 0 0; overflow: hidden;">
+                        
+                        <!-- 💡 修正點：加上 position: absolute 以及寬高 100%，讓影片完美適中填滿外殼 -->
+                        <iframe
+                            src="https://www.youtube.com/embed/O6b20dgkGTc?si=3Si_tc3ffaPYzF5v" 
+                            title="YouTube video player" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            referrerpolicy="strict-origin-when-cross-origin" 
+                            allowfullscreen
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;">
+                        </iframe>
+                    </div>
+
+                    <!-- 下方文字論述區塊 -->
+                    <div class="card-overlay gradient-bottom" style="position: relative; background: rgba(255, 250, 253, 0.85); padding: 2.5rem; border-radius: 0 0 var(--radius-card) var(--radius-card); border-top: 1px solid rgba(0,0,0,0.02);">
+                        <h3 class="card-title-lg" style="margin-bottom: 0.5rem; color: var(--color-on-surface);">“藝術不在作品本身，而在彼此共鳴的那一刻”</h3>
+                        <p class="card-desc" style="max-width: 850px; color: var(--color-on-surface-variant);">
+                            以聲音與顏色作為「對話語言」生成即時音畫作品。創作者以電繪圖板創作音樂、演奏者以木吉他演奏出畫面，透過 TouchDesigner 串接感測器，完美展現出兩人情緒與默契的動態流動。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -194,7 +194,7 @@ body {
     margin-bottom: 1rem;
 }
 
-.hero-title { font-family: var(--font-headline); font-size: var(--fs-display); color: var(--color-on-surface); line-height: 1.15; margin-bottom: 2rem; }
+.hero-title { font-family: var(--font-headline); font-size: 80px; color: var(--color-on-surface); line-height: 1.15; margin-bottom: 2rem; }
 .hero-description { color: var(--color-on-surface-variant); font-size: var(--fs-body-lg); margin-bottom: 2.5rem; max-width: 600px; }
 
 .trait-tags { display: flex; gap: 12px; flex-wrap: wrap; }
@@ -220,7 +220,7 @@ body {
 }
 
 .cover-img { width: 100%; height: 100%; object-fit: cover; }
-.italic-text { font-style: italic; color: var(--color-primary); }
+.Chinese-name-text { font-size: 80px}
 
 /* Bento 網格系統 */
 .portfolio-section { position: relative; z-index: 10; padding: 6rem var(--padding-desktop); max-width: var(--container-max-width); margin: 0 auto; }
@@ -406,8 +406,8 @@ body {
 /* 燈箱本體容器 (延續整體明亮玻璃擬態) */
 .lightbox-content {
     width: 100%;
-    max-width: 920px;
-    max-height: 85vh;
+    max-width: 1000px;
+    max-height: 90vh;
     border-radius: 2.5rem;
     position: relative;
     overflow-y: auto; 
@@ -461,9 +461,9 @@ body {
 
 .lightbox-img {
     width: 100%;
-    max-height: 55vh;
+    max-height: 90vh;
     object-fit: contain; 
-    border-radius: 1.2rem;
+    /* border-radius: 1.2rem; */
     box-shadow: 0 15px 35px rgba(35, 25, 37, 0.08);
     background: rgba(255, 255, 255, 0.3);
 }
@@ -481,7 +481,7 @@ body {
     margin-top: 1.2rem;
     font-size: 14px;
     line-height: 1.75;
-    color: var(--color-on-surface-variant);
+    color: var(--color-on-surface);
     text-align: justify;
 }
 /* ==========================================================================
